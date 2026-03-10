@@ -15,5 +15,13 @@ Berikut tahapan awal dalam memulai pengujian dari firebase console:
 4. Setelah membuat project, aktifkan autentikasi pada email/password
    <img width="1910" height="946" alt="image" src="https://github.com/user-attachments/assets/c13d2b56-8a57-4c07-9ff7-e5c8fbd2c95a" />
 
+5. Pergi ke Settings, Klik General, tambahkan add app
+   <img width="1913" height="936" alt="image" src="https://github.com/user-attachments/assets/9d896553-9276-4818-a814-3e1e246ca301" />
+
+6. Ketika sudah menambahkan Web App, Android App, pada bagian Web App salin API KEY nya
+   <img width="1913" height="934" alt="image" src="https://github.com/user-attachments/assets/16abb845-97fc-415c-9e3b-57926785952d" />
+
+
+
 
 
