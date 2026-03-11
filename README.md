@@ -64,7 +64,84 @@ console.log("Register gagal:", json.error.message);
 } )
    <img width="1350" height="639" alt="image" src="https://github.com/user-attachments/assets/4184f318-76a6-4e98-8ecb-722c3a604d95" />
 
-9. 
+9. Lalu Klik Script, jgn lupa pilih Post-response dan masukan code: // Postman → Tests tab: 
+if (pm.response.code === 200) { 
+const json = pm.response.json(); 
+console.log("Email verifikasi dikirim ke:", json.email); 
+console.log("Sekarang buka inbox email dan klik link verifikasi."); 
+console.log("Setelah klik, lanjut ke Step 3 untuk cek status."); 
+} else { 
+console.log("Gagal kirim email:", pm.response.json().error.message); 
+}  
+<img width="1334" height="845" alt="image" src="https://github.com/user-attachments/assets/97842d50-20cb-490a-8316-827aee597e7e" />
+
+10. Setelah melakukan semua Set-Up Klik send dan Cek Email yang di daftarkan
+    <img width="1328" height="1011" alt="image" src="https://github.com/user-attachments/assets/6b171b56-8a46-4713-9ac9-d82d6af1fa55" />
+
+11. Buka Email yang didaftarkan dan pastikan ada Link seperti berikut
+    <img width="1919" height="893" alt="image" src="https://github.com/user-attachments/assets/726972a5-bf97-4702-8e15-476e487ab925" />
+
+12. Klik Link Tersebut dan Berhasil Verifikasi
+    <img width="1778" height="517" alt="image" src="https://github.com/user-attachments/assets/c557d7ff-40b2-402d-9b6d-990fba70edf9" />
+
+    Langkah selanjutnya adalah Cek Verifikasi Email dan bisa melalui 2 cara, yaitu: langsung dari Firebase dan Via BackEnd
+
+    Cara A :
+    1. Bisa langsung dilakukan langsung dengan URL : https://identitytoolkit.googleapis.com/v1/accounts:lookup?key={
+{FIREBASE_API_KEY}} , Pastikan Methodnya POST, dan salin link tersebut
+    2. Pada Body masukan code seperti yang tertera
+       <img width="1367" height="755" alt="image" src="https://github.com/user-attachments/assets/91b48f87-8d2b-41db-bbce-f0b329ce49ef" />
+    3. Dan Send Hasilnya akan seperti ini
+       <img width="1335" height="1003" alt="image" src="https://github.com/user-attachments/assets/4cdc02cf-58a0-4b28-9144-8c1489776a50" />
+
+
+    Cara B :
+    1. Salin URL berikut: {{BACKEND_BASE_URL}}/auth/verify-token
+    2. Masukan code seperti yang tertera
+    3. pada header masukan key: Content-Type dan Accept, Valuenya keduanya sama yaitu: Application/json
+       <img width="1356" height="769" alt="image" src="https://github.com/user-attachments/assets/9bb9f9b1-2b7c-4eab-8bce-af812e5194dd" />
+
+    Langkah selanjutnya yaitu login, dengan Login Email dan Password
+
+    1. Masukan URL berikut: https://identitytoolkit.googleapis.com/v1/accounts:signInWithPa
+ssword?key={{FIREBASE_API_KEY}}
+    2. Untuk Body :{ 
+    "email": "{{USER_EMAIL}}", 
+    "password": "{{USER_PASSWORD}}", 
+    "returnSecureToken": true 
+} 
+<img width="1360" height="872" alt="image" src="https://github.com/user-attachments/assets/da0e6e47-2c91-45d6-b927-c07613380197" />
+
+
+   3. untuk Script nya : // Postman → Tests tab: 
+const json = pm.response.json(); 
+Tunggu beberapa menit 
+if (pm.response.code === 200) { 
+// Update environment dengan idToken BARU hasil login 
+pm.environment.set("FIREBASE_ID_TOKEN", json.idToken); 
+pm.environment.set("FIREBASE_REFRESH_TOKEN", json.refreshToken); 
+console.log("Login berhasil. Token diperbarui."); 
+console.log("Lanjut ke Step 5: kirim token ke backend."); 
+} else { 
+console.log("Login gagal:", json.error.message); 
+} 
+<img width="1369" height="829" alt="image" src="https://github.com/user-attachments/assets/8644f386-d940-4f4a-bf7e-ce584df04e29" />
+
+  4. Klik Send, maka hasil seperti ini
+     <img width="1354" height="978" alt="image" src="https://github.com/user-attachments/assets/4793e03a-33f5-46f7-a2df-1f9845b4c965" />
+
+pada tahap ini kita memang tidak bisa mengedit secara full keseluruhan Body nya, tapi disini kita bisa mengubah Sender Name dan From, seperti gambar berikut:
+<img width="1521" height="890" alt="image" src="https://github.com/user-attachments/assets/092ef408-13fb-42e1-bd80-2ddb13d7074f" />
+
+
+
+
+       
+       
+
+
+
+
 
    
 
