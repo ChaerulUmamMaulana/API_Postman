@@ -42,6 +42,32 @@ Buka Aplikasi PostMan:
 5. Masuk Header Masukan Key: Content-Type dan value: application/json
    <img width="1346" height="686" alt="image" src="https://github.com/user-attachments/assets/188d6997-ddd5-435a-90fa-8f0a8cda661e" />
 
+6. Masukan code pada Script, pada bagian Post-Response untuk untuk AutoSave Id Token seperti berikut: ( // Postman → Tests tab:
+const json = pm.response.json();
+if (pm.response.code === 200) {
+pm.environment.set("FIREBASE_ID_TOKEN", json.idToken);
+pm.environment.set("FIREBASE_LOCAL_ID", json.localId);
+pm.environment.set("FIREBASE_REFRESH_TOKEN", json.refreshToken);
+console.log("Register sukses. UID:", json.localId);
+console.log("PERHATIAN: Email belum diverifikasi. Lanjut ke Step 2.");
+} else {
+console.log("Register gagal:", json.error.message);
+} )
+   <img width="1344" height="690" alt="image" src="https://github.com/user-attachments/assets/08a29a15-f9f1-4859-bcc4-d1523d05b8f9" />
+
+7. Lalu buat Method baru untuk coba verification email, dengan URL berikut:https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key={{FIREBASE_API_KEY}}, dan ubah method menjadi POST
+   <img width="1919" height="498" alt="image" src="https://github.com/user-attachments/assets/c6e5ff00-c655-4613-b468-ceeadee601e3" />
+
+8. Pada bagian body masukan code seperti berikut: ( {
+"requestType": "VERIFY_EMAIL",
+"idToken": "{{FIREBASE_ID_TOKEN}}"
+} )
+   <img width="1350" height="639" alt="image" src="https://github.com/user-attachments/assets/4184f318-76a6-4e98-8ecb-722c3a604d95" />
+
+9. 
+
+   
+
 
 
    
